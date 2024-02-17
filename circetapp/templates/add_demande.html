@@ -1,0 +1,13 @@
+<!-- myapp/templates/add_demande.html -->
+
+<h1>Ajouter une Demande</h1>
+<form method="post">
+    {% csrf_token %}
+    <h2>Demande</h2>
+    {{ form.as_p }}
+    <h2>Question</h2>
+    {{ question_form.as_p }}
+    <h2>Choice</h2>
+    {{ choice_form.as_p }}
+    <input type="submit" value="Ajouter">
+</form>

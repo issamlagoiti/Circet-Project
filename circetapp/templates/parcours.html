@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <h1>Mes parcours</h1>
+  <div class="card card-default">
+  <table class="table table-bordered ">
+    <thead>
+        <tr>
+            <th>Demande</th>
+            <th>Parcours Text</th>
+            <th>Date</th>
+            <th class="text-center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for parcours in parcours_list %}
+            <tr>
+                <td>{{ parcours.demande_nom }}</td>
+                <td>{{ parcours.parcours_text }}</td>
+                <td>{{ parcours.date_time }}</td>
+                <td class="text-center">
+                    <form method="POST" style="display: inline-block;">
+                        {% csrf_token %}
+                        <input type="hidden" name="parcours_id" value="{{ parcours.id }}">
+                        <button type="submit" name="edit" style="background: none; border: none; cursor: pointer;">
+                            <i class="mdi mdi-open-in-new"></i>
+                        </button>
+                    </form>
+                    <form method="POST" style="display: inline-block;">
+                        {% csrf_token %}
+                        <input type="hidden" name="parcours_id" value="{{ parcours.id }}">
+                        <button type="submit" name="delete" style="background: none; border: none; cursor: pointer;">
+                            <i class="mdi mdi-close text-danger"></i>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

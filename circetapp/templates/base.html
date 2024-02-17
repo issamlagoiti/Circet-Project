@@ -1,0 +1,99 @@
+{% load static %}
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circet app - Responsive Admin & Dashboard Template</title>
+    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon" />
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700|Roboto" rel="stylesheet">
+    <link href="{% static 'plugins/material/css/materialdesignicons.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/simplebar/simplebar.css' %}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.3.67/css/materialdesignicons.min.css" rel="stylesheet">
+    <!-- PLUGINS CSS STYLE -->
+    <link href="{% static 'plugins/nprogress/nprogress.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/jvectormap/jquery-jvectormap-2.0.3.css' %}" rel="stylesheet" />
+    <link href="{% static 'plugins/daterangepicker/daterangepicker.css' %}" rel="stylesheet" />
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link href="{% static 'plugins/toaster/toastr.min.css' %}" rel="stylesheet" />
+    <!-- MONO CSS -->
+    <link id="main-css-href" href="{% static 'css/style.css' %}" rel="stylesheet" />
+    <!-- FAVICON -->
+    <link href="{% static 'images/favicon.png' %}" rel="shortcut icon" />
+    <script src="{% static 'plugins/nprogress/nprogress.js' %}"></script>
+    <link href="{% static 'plugins/fullcalendar/core-4.3.1/main.min.css' %}" rel="stylesheet">
+    <link href="{% static 'plugins/fullcalendar/daygrid-4.3.0/main.min.css' %}" rel="stylesheet">
+    
+</head>
+
+
+<body class="navbar-fixed sidebar-fixed" id="body">
+    <script>
+      NProgress.configure({ showSpinner: false });
+      NProgress.start();
+    </script>
+
+    <div class="wrapper">
+    {% include "navbar.html" %}
+   
+
+
+        
+             
+                <div class="content-wrapper">
+                    <div class="content"> 
+                        {% block body %} {% endblock %}
+                    </div>
+                </div>
+                      
+    
+    </div>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'plugins/simplebar/simplebar.min.js' %}"></script>
+    <script src="https://unpkg.com/hotkeys-js/dist/hotkeys.min.js"></script>
+    <script src="{% static 'plugins/apexcharts/apexcharts.js' %}"></script>
+    <script src="{% static 'plugins/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js' %}"></script> 
+    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-2.0.3.min.js' %}"></script>
+    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-world-mill.js' %}"></script>
+    <script src="{% static 'plugins/jvectormap/jquery-jvectormap-us-aea.js' %}"></script>    
+    <script src="{% static 'plugins/daterangepicker/moment.min.js' %}"></script>
+    <script src="{% static 'plugins/daterangepicker/daterangepicker.js' %}"></script>
+    <script>
+        jQuery(document).ready(function() {
+          jQuery('input[name="dateRange"]').daterangepicker({
+          autoUpdateInput: false,
+          singleDatePicker: true,
+          locale: {
+            cancelLabel: 'Clear'
+          }
+        });
+          jQuery('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+            jQuery(this).val(picker.startDate.format('MM/DD/YYYY'));
+          });
+          jQuery('input[name="dateRange"]').on('cancel.daterangepicker', function (ev, picker) {
+            jQuery(this).val('');
+          });
+        });
+      </script>
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+      <script src="{% static 'plugins/toaster/toastr.min.js' %}"></script>   
+      <script src="{% static 'js/mono.js' %}"></script>
+      <script src="{% static 'js/chart.js' %}"></script>
+      <script src="{% static 'js/map.js' %}"></script>
+      <script src="{% static 'js/custom.js' %}"></script>
+      <script src="{% static 'plugins/fullcalendar/core-4.3.1/main.min.js' %}"></script>
+      <script src="{% static 'plugins/fullcalendar/daygrid-4.3.0/main.min.js' %}"></script>
+      <script src="{% static 'js/calendar.js' %}"></script>
+
+</body>
+
+</html>

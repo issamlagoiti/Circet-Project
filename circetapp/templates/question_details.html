@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block body %}
+    <section>
+        <main>
+            <div class="text-container">
+                <h1>{{ demande.nom }}</h1>
+                <h1>QUESTION :{{ question.question_text }}</h1>
+            </div>
+            </br>
+            <form id="questionForm" method="post" action="{% url 'question_details' question_id=question.id %}">
+                {% csrf_token %}
+                {% for choice in choices %}
+                <div type="submit">
+                    {% if choice.is_text_field %}
+                    <label type="submit">
+                        <button   name="choice" value="{{ choice.id }}" data-next-question-id="{{ choice.next_question.id }}" data-demande-suivante-id="{{ choice.demande_suivante.id }}"><h2>{{ choice.choice_text }}</h2></button>
+                    </label>
+                    <input class="form-control" name="choice_text" placeholder="{{ choice.choice_text }}" required>
+                    {% else %}
+                    <label  type="submit">
+                        <button name="choice" value="{{ choice.id }}" data-next-question-id="{{ choice.next_question.id }}" data-demande-suivante-id="{{ choice.demande_suivante.id }}"><h2>{{ choice.choice_text }}</h2></button>
+                    </label>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </form>
+        </main>
+    </section>
+    <style>
+        main {
+            background-color: #fecba1;
+            border-radius: 10px;
+            padding: 60px 20px 50px;
+            width: 50%;
+            margin: 0px auto 4px;
+        }
+        label {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            background: rgb(253, 126, 20, 1);
+            margin-bottom: 5px;
+            padding: 4px ;
+            position: relative;
+            width: 100%;
+            color: rgb(255, 255, 255);
+        
+        }
+          </style>
+            
+{% endblock %}
+
+
+

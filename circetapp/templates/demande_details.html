@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block body %}
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+        <main>
+            <form method="get" action="{% url 'search_demandes' %}">
+                <input type="text" class="form-control" name="query" placeholder="Recherchez une demande..." />
+                </br>
+                <button type="submit" class="btn btn-success">Rechercher</button>
+            </form>
+            
+
+            <h1>Choisissez une demande :</h1>
+        </br>
+            <form method="post" action="{% url 'demande_details' %}">
+                {% csrf_token %}
+                <div class="row">
+                {% for demande in demandes %}
+                    <div class="col-xl-4">
+                        <label class="radio-label" type="submit">
+                            <button   name="demande" value="{{ demande.id }}"><h2>{{ demande.nom }}</h2></button>
+                            
+                        </label>
+                    </div>
+                {% endfor %}
+                </div>
+            </form>
+        </main>
+        
+
+    <style>
+main {
+    background-color: #fecba1;
+    border-radius: 10px;
+    padding: 12px 20px 50px;
+    width: 90%;
+    margin: 0px auto 4px;
+}
+
+label {
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background: rgb(253, 126, 20, 1);
+    margin-bottom: 16px;
+    padding: 6px ;
+    position: relative;
+    width: 100%;
+    color: rgb(255, 255, 255);
+}
+  </style>
+    
+
+{% endblock %}

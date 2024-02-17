@@ -1,0 +1,1 @@
+& C:/Users/ds/Desktop/circet/env/Scripts/Activate.ps1

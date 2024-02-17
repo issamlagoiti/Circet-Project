@@ -1,0 +1,31 @@
+
+.login-logo img {
+  width: 200px;
+  height: 100px;
+}
+
+.sidebar-orange-info {
+  background-color: #000000; /* Remplacez "orange" par la couleur orange de votre choix */
+
+}
+
+.sidebar a {
+  color: white; /* Remplacez "white" par la couleur de texte de votre choix */
+  font-size: 16px;
+
+}
+
+
+.nav-pills .nav-link {
+  color: #ffffff !important;
+}
+
+.img-circle {
+  border-radius: 0%;
+}
+
+.nav-sidebar .nav-header {
+  font-size: 1rem !important;
+  padding: 0.5rem 0.75rem;
+  color: #fd7e14 !important;
+}

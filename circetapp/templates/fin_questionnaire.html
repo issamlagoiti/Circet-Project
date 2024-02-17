@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block body %}
+
+
+    {# Ajoutez ce bloc pour afficher les messages #}
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script>
+        function copyToClipboard() {
+            var copyText = document.getElementById("parcours");
+            copyText.select();
+            document.execCommand("copy");
+        }
+    </script>
+
+    <main>
+        <h1>Fin du questionnaire</h1>
+        <h3>Parcours du questionnaire :</h3>
+
+        <form method="post" action="{% url 'enregistrer_parcours' %}">
+            {% csrf_token %}
+            <textarea class="form-control" id="parcours" name="parcours_text" rows="5" cols="33">{{ parcours_text }}</textarea>
+            <input type="hidden" name="demande_nom" value="{{ demande_nom }}" />
+        </br>
+            <button type="button" class="btn btn-success" onclick="copyToClipboard()">Copier</button>
+            <button type="submit" class="btn btn-primary" onclick="copyToClipboard()">Enregistrer</button>  <!-- Bouton Enregistrer -->
+        </form>
+    </main>
+
+    <style>
+        main {
+            background-color: #fecba1;
+            border-radius: 10px;
+            padding: 60px 20px 50px;
+            width: 50%;
+            margin: 0px auto 4px;
+        }
+        
+        
+        label {
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+            background: rgb(253, 126, 20, 1);
+            margin-bottom: 5px;
+            padding: 4px ;
+            position: relative;
+            width: 100%;
+            color: rgb(255, 255, 255);
+        
+        }
+        
+        #parcours {
+            width: 97%;
+            height: 340px;
+
+            border: none;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 10px;
+            color: #000000;
+
+            font-size: 17px;
+            line-height: 125%;
+        }
+        
+        
+          </style>
+            
+
+{% endblock %}

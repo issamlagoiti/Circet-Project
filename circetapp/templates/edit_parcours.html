@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block body %}
+<main>
+  <h1>Modifier le parcours</h1>
+  <form method="post" novalidate>
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <h5>Nom de la demande :</h5>
+        <input type="text" name="demande_nom" class="form-control {% if form.demande_nom.errors %}is-invalid{% endif %}" id="id_demande_nom" value="{{ form.demande_nom.value|default_if_none:'' }}">
+        {% for error in form.demande_nom.errors %}
+            <div class="invalid-feedback">
+                {{ error }}
+            </div>
+        {% endfor %}
+      </div>
+
+      <div class="mb-3">
+          <h5>Parcours du questionnaire :</h5>
+          <textarea class="form-control {% if form.parcours_text.errors %}is-invalid{% endif %}" id="parcours" name="parcours_text" rows="5">{{ form.parcours_text.value|default_if_none:'' }} </textarea>
+          {% for error in form.parcours_text.errors %}
+              <div class="invalid-feedback">
+                  {{ error }}
+              </div>
+          {% endfor %}
+      </div>
+
+      <input type="hidden" name="parcours_id" value="{{ parcours.id }}">  <!-- Ne pas oublier d'inclure l'ID du parcours -->
+      <button type="submit" class="btn btn-primary" name="update">Mettre à jour</button>
+  </form>
+</main>
+
+<style>
+  main {
+      background-color: #fecba1;
+      border-radius: 10px;
+      padding: 10px 20px 8px;
+      width: 50%;
+      margin: 0px auto 4px;
+  }
+  
+  
+  label {
+      display: flex;
+      align-items: center;
+      border-radius: 5px;
+      background: rgb(253, 126, 20, 1);
+      margin-bottom: 5px;
+      padding: 4px ;
+      position: relative;
+      width: 100%;
+      color: rgb(255, 255, 255);
+  
+  }
+  
+  #parcours {
+      width: 97%;
+      height: 340px;
+
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+      margin: 10px;
+      color: #000000;
+
+      font-size: 17px;
+      line-height: 125%;
+  }
+  
+  
+    </style>
+
+
+{% endblock %}
